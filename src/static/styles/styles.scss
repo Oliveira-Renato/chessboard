@@ -8,13 +8,25 @@
   justify-content: center;
   gap: 4rem;
 
+  .main-title {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 4rem;
+      padding-left: 2rem;
+    }
+  }
+
   main {
     font-size: 3rem;
     @media (min-width: 1020px) {
       font-size: 5rem;
     }
     .chessboard-container {
+      overflow: hidden;
       table {
+        background: #BEB7A4;
         thead {
           tr {
             font-size: 1.6rem;
@@ -23,6 +35,20 @@
         tbody {
           tr td:first-child,tr:last-child  {
             font-size: 1.6rem;
+          }
+          tr {
+            td {
+              iconify-icon {
+                cursor: pointer;
+              }
+              .chess-piece {
+                transition: transform 100ms ease-in-out;
+                &:hover {
+                  transform: scale(1.2);
+                  background-color: #CBE896;
+                }
+              }
+            }
           }
         }
       }

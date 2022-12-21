@@ -2,23 +2,25 @@ import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Icon } from '@iconify/react';
+
 
 export function Home() {
   useEffect(() => {
     let vChessPiecesBlack: any[] = 
-        ['<iconify-icon icon="game-icons:chess-rook"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-knight"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-bishop"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-queen"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-king"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-bishop"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-knight"></iconify-icon>',
-        '<iconify-icon icon="game-icons:chess-bishop"></iconify-icon>'
+        ['<iconify-icon class="chess-piece" icon="game-icons:chess-rook"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-knight"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-bishop"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-queen"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-king"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-bishop"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-knight"></iconify-icon>',
+        '<iconify-icon class="chess-piece" icon="game-icons:chess-bishop"></iconify-icon>'
       ],
         wAlpha:any[] = ["", "a", "b", "c", "d", "e", "f", "g", "h"],
         wChessBoard: any[][][] = [[[1]],[[2]],[[3]],[[4]],[[5]],[[6]],[[7]],[[8]],[[]]],
         vTheadTR: any = document.querySelector("thead tr"), vTbody: any = document.querySelector("tbody"),
-        vPawn = '<iconify-icon icon="game-icons:chess-pawn"></iconify-icon>';
+        vPawn = '<iconify-icon class="chess-piece" icon="game-icons:chess-pawn"></iconify-icon>';
 
     //ChessBoard
     wChessBoard.forEach(function (board, idx) {
@@ -39,7 +41,11 @@ export function Home() {
         }
       } else {
         for (let i = 0; i < 8; i++) {
-          wChessBoard[idx].push(['<iconify-icon icon="la:chess-board"></iconify-icon>']);
+          if((idx % 2 === 0 && i % 2 === 1) || (idx % 2 === 1 && i % 2 === 0)) {
+            wChessBoard[idx].push(['<iconify-icon icon="uim:square"></iconify-icon>']);
+          } else {
+            wChessBoard[idx].push(['<iconify-icon icon="uim:square-full"></iconify-icon>']);
+          }
         }
       }
     });
@@ -56,7 +62,7 @@ export function Home() {
         if (i === 8) {
           tr.innerHTML += `<th>${wAlpha[j]}</th>`;
         } else {
-          tr.innerHTML += `<td>${wChessBoard[i][j]}</td>`;
+          tr.innerHTML += `<td class="chessboard-square">${wChessBoard[i][j]}</td>`;
         }
       }
       vTbody.append(tr);
@@ -66,7 +72,10 @@ export function Home() {
   return (
     <div id="chess-main">
       <div className="main-title">
-        <h1>Chessboard<FontAwesomeIcon icon={solid('user-secret')} /></h1>
+        <h1>Chessboard</h1>
+        <span>
+          <Icon icon="fa6-solid:chess" />
+        </span>
       </div>
       <main>
         <div className="chessboard-container">
