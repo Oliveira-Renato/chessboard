@@ -1,11 +1,13 @@
 import React from 'react';
-
+import  GlobalStyle  from './static/styles/global';
+import { Home } from './pages/Home'
+import './static/styles/styles.scss';
+ 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       <h1>Chessboard</h1>
-      </header>
+      <GlobalStyle />
+      <Home />
     </div>
   );
 }
