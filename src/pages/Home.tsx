@@ -10,7 +10,7 @@ export function Home() {
     let vChessPieces = document.querySelectorAll('.chess-piece')
 
     for (let index = 0; index < vChessPieces.length ; index++) {
-      if(index < (vChessPieces.length / 2)) {
+      if(index >= (vChessPieces.length / 2)) {
         vChessPieces[index].classList.add('chess-piece-white')
       }
     }
@@ -27,7 +27,7 @@ export function Home() {
         '<iconify-icon class="chess-piece" data-piece-name="knight" data-eixo-x="g" data-eixo-y data-letter icon="game-icons:chess-knight"></iconify-icon>',
         '<iconify-icon class="chess-piece" data-piece-name="rook" data-eixo-x="h" data-eixo-y data-letter icon="game-icons:chess-rook"></iconify-icon>'
       ],
-        wAlpha:any[] = ["", "a", "b", "c", "d", "e", "f", "g", "h"],
+        wAlpha:any[] | string = ["", "a", "b", "c", "d", "e", "f", "g", "h"],
         wChessBoard: any[][][] = [
           [['<strong>8</strong>']],
           [['<strong>7</strong>']],
@@ -38,13 +38,12 @@ export function Home() {
           [['<strong>2</strong>']],
           [['<strong>1</strong>']],[[]]],
         vTheadTR: any = document.querySelector("thead tr"), vTbody: any = document.querySelector("tbody"),
-        vPawn = '<iconify-icon class="chess-piece pawn" data-piece-name data-eixo-x data-eixo-y data-letter icon="game-icons:chess-pawn" ></iconify-icon>';
+        vPawn = '<iconify-icon class="chess-piece pawn" data-piece-name="pawn" data-eixo-x data-eixo-y data-letter icon="game-icons:chess-pawn" ></iconify-icon>';
 
     //ChessBoard
     wChessBoard.forEach(function (board, idx) {
       if (idx === 0 || idx === 7) {
         vChessPiecesBlack.forEach((chessPiece) => {
-          console.log(chessPiece)
           wChessBoard[idx].push(chessPiece.replace('data-eixo-y','data-eixo-y=' + (8 - idx)));// 8(number of pieces) minus the index number
         });
 
@@ -60,10 +59,11 @@ export function Home() {
       } else {
         for (let i = 0; i < 8; i++) {
           if((idx % 2 === 0 && i % 2 === 1) || (idx % 2 === 1 && i % 2 === 0)) {
-            wChessBoard[idx].push(['<iconify-icon icon="uim:square"></iconify-icon>']);
+            wChessBoard[idx].push(['<iconify-icon icon="uim:square" data-eixo-x="'+ wAlpha[i + 1] +'" data-eixo-y='+ (idx -2 ) +'></iconify-icon>']);
           } else {
-            wChessBoard[idx].push(['<iconify-icon icon="uim:square-full"></iconify-icon>']);
+            wChessBoard[idx].push(['<iconify-icon icon="uim:square-full" data-eixo-x="'+ wAlpha[i + 1] +'"  data-eixo-y='+ (idx -2 ) +'></iconify-icon>']);
           }
+         console.log(wChessBoard[i][idx])
         }
       }
     });
