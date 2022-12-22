@@ -1,10 +1,5 @@
-import React, { useMemo, useState, useEffect } from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import React, { useState, useEffect } from 'react';
 import { Icon, IconifyIcon } from '@iconify/react';
-import { useTable } from "react-table";
-
 
 export function Home() {
   const hanldeWhiteAndBlack = () => {
@@ -33,7 +28,7 @@ export function Home() {
         ],
         wAlpha:string[] = ["", "a", "b", "c", "d", "e", "f", "g", "h"],
         wChessBoard: any[][][] =  [ [[]], [[]], [[]], [[]], [[]], [[]], [[]], [[]], [[]] ],
-        vTheadTR: any = document.querySelector("thead tr"), vTbody: any = document.querySelector("tbody");
+        vTbody: any = document.querySelector("tbody");
 
     //handleFillSquares   
     const handleFillSquares = () => {
@@ -92,6 +87,7 @@ export function Home() {
     
     handleChessBoard()
     hanldeWhiteAndBlack()
+    
   });
 
   return (
