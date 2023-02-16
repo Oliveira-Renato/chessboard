@@ -27,3 +27,5 @@ yarn-error.log*
 *.css.map
 *.sass.map
 *.scss.map
+
+### Js ###
